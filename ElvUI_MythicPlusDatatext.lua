@@ -96,27 +96,39 @@ local labelText = {
 	none = ""
 }
 
-local affixes = {
-	[3] = L["Volcanic"],
-	[4] = L["Necrotic"],
-	[6] = L["Raging"],
-	[7] = L["Bolstering"],
-	[8] = L["Sanguine"],
-	[9] = L["Tyrannical"],
-	[10] = L["Fortified"],
-	[11] = L["Bursting"],
-	[12] = L["Grievous"],
-	[13] = L["Explosive"],
-	[14] = L["Quaking"],
-	[122] = L["Inspiring"],
-	[123] = L["Spiteful"],
-	[124] = L["Storming"],
-	[128] = L["Tormented"],
-	[129] = L["Infernal"],
-	[130] = L["Encrypted"],
-	[131] = L["Shrouded"],
-	[132] = L["Thundering"],
+local affixData = {
+	[1] = { L["Overflowing"], 463570 },
+	[2] = { L["Skittish"], 135994},
+	[3] = { L["Volcanic"], 451169},
+	[4] = { L["Necrotic"], 1029009 },
+	[5] = { L["Teeming"], 136054 },
+	[6] = { L["Raging"], 132345 },
+	[7] = { L["Bolstering"], 132333 },
+	[8] = { L["Sanguine"], 136124 },
+	[9] = { L["Tyrannical"], 236401 },
+	[10] = { L["Fortified"], 463829 },
+	[11] = { L["Bursting"], 1035055 },
+	[12] = { L["Grievous"], 132090 },
+	[13] = { L["Explosive"], 2175503 },
+	[14] = { L["Quaking"], 136025 },
+	[16] = { L["Infested"], 2032223 },
+	[117] = { L["Reaping"], 2446016 },
+	[119] = { L["Beguiling"], 237565 },
+	[120] = { L["Awakened"], 442737 },
+	[121] = { L["Prideful"], 3528307 },
+	[122] = { L["Inspiring"], 135946 },
+	[123] = { L["Spiteful"], 135945 },
+	[124] = { L["Storming"], 136018},
+	[128] = { L["Tormented"], 3528304 },
+	[129] = { L["Infernal"], 1394959 },
+	[130] = { L["Encrypted"], 4038106 },
+	[131] = { L["Shrouded"], 136177 },
+	[132] = { L["Thundering"], 1385910 },
 }
+
+local function GetAffixData(affixID)
+	return unpack(affixData[affixID])
+end
 
 --[[local function IsLegionTimewalkingActive()
 	for i = 1, 40 do
@@ -207,7 +219,7 @@ local function OnEnter(self)
 
 	DT.tooltip:AddLine((L["Season %d"]):format(C_MythicPlus_GetCurrentSeason() - 8))
 	DT.tooltip:AddDoubleLine(L["Mythic+ Rating"], currentScore, 1, 1, 1, color.r, color.g, color.b)
-	DT.tooltip:AddDoubleLine(L["Affixes"], ("%s, %s, %s, %s"):format(affixes[currentAffixes[1].id], affixes[currentAffixes[2].id], affixes[currentAffixes[3].id], affixes[currentAffixes[4].id]), 1, 1, 1, rgbColor.r, rgbColor.g, rgbColor.b)
+	DT.tooltip:AddDoubleLine(L["Affixes"], format("%s, %s, %s, %s", GetAffixData(currentAffixes[1].id), GetAffixData(currentAffixes[2].id), GetAffixData(currentAffixes[3].id), GetAffixData(currentAffixes[4].id)), 1, 1, 1, rgbColor.r, rgbColor.g, rgbColor.b)
 	DT.tooltip:AddLine(" ")
 
 	if currentScore > 0 then
